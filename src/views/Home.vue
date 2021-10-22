@@ -1,5 +1,11 @@
+<!--
+ * @Author: kingford
+ * @Date: 2021-10-22 09:48:04
+ * @LastEditTime: 2021-10-22 16:04:30
+-->
 <template>
   <div class="home">
+    <van-button type="primary">vant</van-button>
     <img alt="Vue logo" src="../assets/logo.png" />
     <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
   </div>
