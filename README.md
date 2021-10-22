@@ -30,8 +30,14 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ## other
 
-Delete `␍`eslint
+- Delete `␍`eslint
 
 ```bash
 npm run lint --fix
+```
+
+- "postcss-pxtorem": "^5.1.1"
+
+```bash
+ npm i postcss-pxtorem@5.1.1 --save-dev
 ```

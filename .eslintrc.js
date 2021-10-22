@@ -1,3 +1,8 @@
+/*
+ * @Author: kingford
+ * @Date: 2021-10-22 09:48:04
+ * @LastEditTime: 2021-10-22 16:49:29
+ */
 module.exports = {
   root: true,
   env: {
@@ -14,6 +19,7 @@ module.exports = {
     ecmaVersion: 2020,
   },
   rules: {
+    "@typescript-eslint/no-var-requires": 0,
     "no-console": process.env.NODE_ENV === "production" ? "warn" : "off",
     "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",
   },
