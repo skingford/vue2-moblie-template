@@ -1,15 +1,22 @@
+const IS_PROD = ["production", "prod"].includes(process.env.NODE_ENV);
 const path = require("path");
 const HotHashWebpackPlugin = require("hot-hash-webpack-plugin");
 const WebpackBar = require("webpackbar");
 const resolve = (dir) => path.join(__dirname, ".", dir);
 
 // https://juejin.cn/post/6886698055685373965#heading-1
+// https://github.com/staven630/vue-cli4-config
 
 module.exports = {
-  productionSourceMap: false,
-  publicPath: "./",
-  outputDir: "dist",
-  assetsDir: "assets",
+  // 默认'/'，部署应用包时的基本 URL
+  publicPath: IS_PROD ? process.env.VUE_APP_PUBLIC_PATH : "./",
+  // outputDir: process.env.outputDir || 'dist', // 'dist', 生产环境构建文件的目录
+  // assetsDir: "assets", // 相对于outputDir的静态资源(js、css、img、fonts)目录
+  lintOnSave: false,
+  runtimeCompiler: true, // 是否使用包含运行时编译器的 Vue 构建版本
+  productionSourceMap: !IS_PROD, // 生产环境的 source map
+  parallel: require("os").cpus().length > 1,
+
   devServer: {
     port: 9999,
     host: "0.0.0.0",
@@ -19,20 +26,41 @@ module.exports = {
 
   chainWebpack: (config) => {
     const types = ["vue-modules", "vue", "normal-modules", "normal"];
+
+    // 通过 style-resources-loader 来添加scss全局变量
     types.forEach((type) => {
-      let rule = config.module.rule("less").oneOf(type);
+      let rule = config.module.rule("scss").oneOf(type);
       rule
         .use("style-resource")
         .loader("style-resources-loader")
         .options({
-          patterns: [path.resolve(__dirname, "./lessVariates.less")],
+          patterns: [path.resolve(__dirname, "./global.scss")],
         });
     });
 
+    // 修复HMR
+    config.resolve.symlinks(true);
+
+    // 添加别名
     config.resolve.alias
       .set("@", resolve("src"))
       .set("api", resolve("src/apis"))
       .set("common", resolve("src/common"));
+
+    if (IS_PROD) {
+      // 压缩图片
+      config.module
+        .rule("images")
+        .use("image-webpack-loader")
+        .loader("image-webpack-loader")
+        .options({
+          mozjpeg: { progressive: true, quality: 65 },
+          optipng: { enabled: false },
+          pngquant: { quality: [0.65, 0.9], speed: 4 },
+          gifsicle: { interlaced: false },
+          // webp: { quality: 75 }
+        });
+    }
 
     config.module
       .rule("images")
@@ -63,6 +91,7 @@ module.exports = {
     if (process.env.NODE_ENV === "production") {
       config.output.filename("./js/[name].[chunkhash:8].js");
       config.output.chunkFilename("./js/[name].[chunkhash:8].js");
+
       config.plugin("extract-css").tap(() => [
         {
           filename: "css/[name].[contenthash:8].css",
