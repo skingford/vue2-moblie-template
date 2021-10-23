@@ -1,7 +1,7 @@
 <!--
  * @Author: kingford
  * @Date: 2021-10-22 09:48:04
- * @LastEditTime: 2021-10-23 17:00:20
+ * @LastEditTime: 2021-10-23 17:57:54
 -->
 <template>
   <div class="home">
@@ -42,7 +42,16 @@ export default class Home extends Vue {
 
   testCmd() {
     toast('发送串口指令');
-    cmd.sendSerialCmd('AA010104000000000000000004DF');
+    cmd
+      .sendSerialCmd('AA010104000000000000000004DF')
+      .then((res) => {
+        console.log('res:', res);
+        toast(res);
+      })
+      .catch((err) => {
+        console.log('err:', err);
+        toast(err);
+      });
   }
 
   private getInfo(): void {
