@@ -1,7 +1,7 @@
 <!--
  * @Author: kingford
  * @Date: 2021-10-22 09:48:04
- * @LastEditTime: 2021-10-23 17:57:54
+ * @LastEditTime: 2021-10-23 17:59:55
 -->
 <template>
   <div class="home">
@@ -25,6 +25,7 @@ import { Component, Vue } from 'vue-property-decorator';
 import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
 import { hardwareInfo, cmd } from '@/utils/android/hardware';
 import { toast } from '@/utils/android/tools';
+import { Toast } from 'vant';
 
 @Component({
   components: {
@@ -49,8 +50,10 @@ export default class Home extends Vue {
         toast(res);
       })
       .catch((err) => {
+        // code ,result
         console.log('err:', err);
         toast(err);
+        Toast(err.result);
       });
   }
 
