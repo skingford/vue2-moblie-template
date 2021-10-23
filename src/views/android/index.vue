@@ -1,7 +1,7 @@
 <!--
  * @Author: kingford
  * @Date: 2021-10-22 09:48:04
- * @LastEditTime: 2021-10-23 15:35:06
+ * @LastEditTime: 2021-10-23 17:00:20
 -->
 <template>
   <div class="home">
@@ -13,6 +13,7 @@
       <van-cell icon="balance-o" title="os版本" :value="state.osVersion" />
     </van-cell-group>
     <van-cell-group inset>
+      <van-cell icon="setting-o" title="发送串口指令" @click="testCmd" />
       <van-cell icon="setting-o" title="发送串口指令" is-link to="/system/error-log" />
       <van-cell icon="setting-o" title="设置" is-link to="/me/setting" />
     </van-cell-group>
@@ -22,7 +23,8 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
-import { hardwareInfo } from '@/utils/android/hardware';
+import { hardwareInfo, cmd } from '@/utils/android/hardware';
+import { toast } from '@/utils/android/tools';
 
 @Component({
   components: {
@@ -36,6 +38,11 @@ export default class Home extends Vue {
 
   created() {
     this.getInfo();
+  }
+
+  testCmd() {
+    toast('发送串口指令');
+    cmd.sendSerialCmd('AA010104000000000000000004DF');
   }
 
   private getInfo(): void {

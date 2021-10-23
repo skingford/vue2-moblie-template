@@ -1,24 +1,25 @@
 /*
  * @Author: kingford
  * @Date: 2021-10-20 09:56:15
- * @LastEditTime: 2021-10-23 11:24:40
+ * @LastEditTime: 2021-10-23 17:04:50
  */
 import { successFunc, failFunc } from '../types/hardware';
+import { asyncToAndroid } from '../core';
 
-class Cmd {
+class Command {
   constructor() {}
 
-  /**
-   *
-   * @description: 发送串口指令
-   * @param {string} cmd
-   * @param {successFunc} success
-   * @param {failFunc} fial
-   * @return {*}
-   * @memberof hardware
-   */
-  sendSerialCmd(cmd: string, success: successFunc, fial: failFunc) {
-    return android.sendSerialCmd(cmd, [success, fial]);
+  sendSerialCmd(cmd: string) {
+    asyncToAndroid(
+      { method: 'sendSerialCmd', args: [cmd] },
+      (res: any) => {
+        console.log('res:', res);
+      },
+      (code: any) => {
+        console.log('code:', code);
+      }
+    );
+    // return android.sendSerialCmd(cmd, [success, fial]);
   }
 
   run(cmd: string, success: successFunc, fial: failFunc) {
@@ -27,7 +28,7 @@ class Cmd {
 }
 
 function createCmd() {
-  return new Cmd();
+  return new Command();
 }
 
-export const defCmd = createCmd();
+export const cmd = createCmd();
