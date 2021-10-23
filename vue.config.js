@@ -112,6 +112,7 @@ module.exports = {
           terserOptions.compress.drop_debugger = true;
           return args;
         });
+
       config.optimization.splitChunks({
         cacheGroups: {
           common: {
