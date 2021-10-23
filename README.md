@@ -1,7 +1,7 @@
 <!--
  * @Author: kingford
  * @Date: 2021-10-22 09:48:04
- * @LastEditTime: 2021-10-23 11:00:58
+ * @LastEditTime: 2021-10-23 11:31:30
 -->
 
 # vue2-moblie-template
@@ -34,17 +34,3 @@ npm run lint
 
 - [Configuration Reference](https://cli.vuejs.org/config/).
 - [vue-cli4-config](https://github.com/staven630/vue-cli4-config#ie)
-
-## other
-
-- Delete `␍`eslint
-
-```bash
-npm run lint --fix
-```
-
-- "postcss-pxtorem": "^5.1.1"
-
-```bash
- npm i postcss-pxtorem@5.1.1 --save-dev
-```
