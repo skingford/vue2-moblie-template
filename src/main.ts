@@ -1,7 +1,7 @@
 /*
  * @Author: kingford
  * @Date: 2021-10-22 09:48:04
- * @LastEditTime: 2021-10-22 16:45:17
+ * @LastEditTime: 2021-10-23 10:58:43
  */
 import Vue from "vue";
 import App from "./App.vue";
@@ -10,6 +10,10 @@ import router from "./router";
 import store from "./store";
 import "amfe-flexible";
 import { setupVant } from "./hooks/web/vant";
+
+// 兼容ie
+import "core-js/stable";
+import "regenerator-runtime/runtime";
 
 function bootstrap() {
   Vue.config.productionTip = false;

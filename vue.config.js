@@ -24,28 +24,29 @@ module.exports = {
     open: true,
   },
 
+  css: {
+    extract: IS_PROD,
+    sourceMap: false,
+    loaderOptions: {
+      scss: {
+        // 向全局sass样式传入共享的全局变量, $src可以配置图片cdn前缀
+        // 详情: https://cli.vuejs.org/guide/css.html#passing-options-to-pre-processor-loaders
+        prependData: `
+        @import "@/styles/variables.scss";
+        @import "@/styles/mixins.scss";
+        @import "@/styles/function.scss";
+        $src: "${process.env.VUE_APP_OSS_SRC}";
+        `,
+      },
+    },
+  },
+
   chainWebpack: (config) => {
-    const types = ["vue-modules", "vue", "normal-modules", "normal"];
-
-    // 通过 style-resources-loader 来添加scss全局变量
-    types.forEach((type) => {
-      let rule = config.module.rule("scss").oneOf(type);
-      rule
-        .use("style-resource")
-        .loader("style-resources-loader")
-        .options({
-          patterns: [path.resolve(__dirname, "./global.scss")],
-        });
-    });
-
     // 修复HMR
     config.resolve.symlinks(true);
 
     // 添加别名
-    config.resolve.alias
-      .set("@", resolve("src"))
-      .set("api", resolve("src/apis"))
-      .set("common", resolve("src/common"));
+    config.resolve.alias.set("@", resolve("src")).set("#", resolve("types"));
 
     if (IS_PROD) {
       // 压缩图片
