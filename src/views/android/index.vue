@@ -1,7 +1,7 @@
 <!--
  * @Author: kingford
  * @Date: 2021-10-22 09:48:04
- * @LastEditTime: 2021-10-26 15:46:48
+ * @LastEditTime: 2021-10-26 20:12:22
 -->
 <template>
   <div class="home">
@@ -20,6 +20,7 @@
     <van-cell-group inset>
       <van-cell icon="setting-o" title="锁操作" is-link to="/lock" />
       <van-cell icon="setting-o" title="数据库操作" is-link to="/database" />
+      <van-cell icon="setting-o" title="文件操作" is-link to="/file" />
     </van-cell-group>
   </div>
 </template>
@@ -50,7 +51,7 @@ export default class Home extends Vue {
   testCmd() {
     toast('发送串口指令');
     cmd
-      .sendSerialCmd('AA010104000000000000000004DF')
+      .sendSerial('AA010104000000000000000004DF')
       .then((res) => {
         console.log('res:', res);
         toast(res);

@@ -1,14 +1,14 @@
 /*
  * @Author: kingford
  * @Date: 2021-10-20 09:04:15
- * @LastEditTime: 2021-10-26 15:40:10
+ * @LastEditTime: 2021-10-26 20:03:59
  */
 import { asyncToAndroid } from '../core';
 
 class Locker {
   constructor() {}
 
-  getStatus(section: string, port: string) {
+  getStatus(section: number, port: number) {
     return new Promise((resolve, reject) => {
       asyncToAndroid({ method: 'getLockStatus', args: [section, port] }, resolve, reject);
     });

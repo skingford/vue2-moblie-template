@@ -1,7 +1,7 @@
 /*
  * @Author: kingford
  * @Date: 2021-10-20 09:56:15
- * @LastEditTime: 2021-10-26 16:05:01
+ * @LastEditTime: 2021-10-26 19:58:40
  */
 
 import { asyncToAndroid } from '../core';
@@ -9,9 +9,15 @@ import { asyncToAndroid } from '../core';
 class Command {
   constructor() {}
 
-  sendSerialCmd(cmd: string) {
+  sendSerial(cmd: string) {
     return new Promise((resolve, reject) => {
       asyncToAndroid({ method: 'sendSerialCmd', args: [cmd] }, resolve, reject);
+    });
+  }
+
+  run(cmd: string) {
+    return new Promise((resolve, reject) => {
+      asyncToAndroid({ method: 'run', args: [cmd] }, resolve, reject);
     });
   }
 }

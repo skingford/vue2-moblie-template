@@ -1,15 +1,16 @@
 /*
  * @Author: kingford
  * @Date: 2021-10-26 16:23:54
- * @LastEditTime: 2021-10-26 16:31:49
+ * @LastEditTime: 2021-10-26 20:11:00
  */
 export function parseDesc(desc: any) {
   let args: any = [];
   args['tableName'] = desc['tableName'];
   args['fields'] = desc['fields'];
   let where = '';
-  let selectionArgs = [];
+  let selectionArgs: any[] = [];
   let conditions = desc['conditions'];
+
   for (let i = 0; i < conditions.length; i++) {
     let item = conditions[i];
     if (item.hasOwnProperty('start')) {
@@ -57,7 +58,7 @@ export function table(tableName: string) {
   let _conditions: any[] = [];
 
   function trans2Normal(fields: any) {
-    let result = [];
+    let result: any[] = [];
     if (fields.length === 1 && fields[0] instanceof Object) {
       for (let key in fields[0]) {
         if (fields[0].hasOwnProperty(key)) {

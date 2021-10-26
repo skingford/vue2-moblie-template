@@ -1,7 +1,7 @@
 /*
  * @Author: kingford
  * @Date: 2021-10-22 09:48:04
- * @LastEditTime: 2021-10-26 15:46:39
+ * @LastEditTime: 2021-10-26 20:02:40
  */
 import Vue from 'vue';
 import VueRouter, { RouteConfig } from 'vue-router';
@@ -33,6 +33,11 @@ const routes: Array<RouteConfig> = [
     path: '/database',
     name: 'Database',
     component: () => import('../views/android/database.vue'),
+  },
+  {
+    path: '/file',
+    name: 'File',
+    component: () => import('../views/android/file.vue'),
   },
 ];
 

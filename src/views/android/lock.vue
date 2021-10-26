@@ -1,7 +1,7 @@
 <!--
  * @Author: kingford
  * @Date: 2021-10-22 09:48:04
- * @LastEditTime: 2021-10-26 15:22:46
+ * @LastEditTime: 2021-10-26 20:03:02
 -->
 <template>
   <div class="lock">
@@ -32,7 +32,7 @@ export default class Home extends Vue {
         console.log('testQuery.res：', res);
       })
       .catch((err) => {
-        console.log('testQuery.err：', res);
+        console.log('testQuery.err：', err);
       });
   }
 
@@ -44,7 +44,7 @@ export default class Home extends Vue {
         console.log('testQueryAll.res：', res);
       })
       .catch((err) => {
-        console.log('testQueryAll.err：', res);
+        console.log('testQueryAll.err：', err);
       });
   }
 
@@ -56,7 +56,7 @@ export default class Home extends Vue {
         console.log('testOpen.res：', res);
       })
       .catch((err) => {
-        console.log('testOpen.err：', res);
+        console.log('testOpen.err：', err);
       });
   }
 
@@ -68,7 +68,7 @@ export default class Home extends Vue {
         console.log('testOpenAll.res：', res);
       })
       .catch((err) => {
-        console.log('testOpenAll.err：', res);
+        console.log('testOpenAll.err', err);
       });
   }
 }
