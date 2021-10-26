@@ -1,7 +1,7 @@
 <!--
  * @Author: kingford
  * @Date: 2021-10-22 09:48:04
- * @LastEditTime: 2021-10-23 17:59:55
+ * @LastEditTime: 2021-10-26 15:06:52
 -->
 <template>
   <div class="home">
@@ -12,10 +12,13 @@
       <van-cell icon="balance-o" title="app版本" :value="state.appVersion" />
       <van-cell icon="balance-o" title="os版本" :value="state.osVersion" />
     </van-cell-group>
+
     <van-cell-group inset>
       <van-cell icon="setting-o" title="发送串口指令" @click="testCmd" />
-      <van-cell icon="setting-o" title="发送串口指令" is-link to="/system/error-log" />
-      <van-cell icon="setting-o" title="设置" is-link to="/me/setting" />
+    </van-cell-group>
+
+    <van-cell-group inset>
+      <van-cell icon="setting-o" title="锁操作" is-link to="/lock" />
     </van-cell-group>
   </div>
 </template>
@@ -23,7 +26,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
-import { hardwareInfo, cmd } from '@/utils/android/hardware';
+import { hardwareInfo, cmd, locker } from '@/utils/android/hardware';
 import { toast } from '@/utils/android/tools';
 import { Toast } from 'vant';
 
@@ -41,6 +44,8 @@ export default class Home extends Vue {
     this.getInfo();
   }
 
+  testLock() {}
+
   testCmd() {
     toast('发送串口指令');
     cmd
@@ -52,7 +57,7 @@ export default class Home extends Vue {
       .catch((err) => {
         // code ,result
         console.log('err:', err);
-        toast(err);
+
         Toast(err.result);
       });
   }

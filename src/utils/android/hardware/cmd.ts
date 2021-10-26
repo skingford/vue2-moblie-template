@@ -1,7 +1,7 @@
 /*
  * @Author: kingford
  * @Date: 2021-10-20 09:56:15
- * @LastEditTime: 2021-10-23 17:55:32
+ * @LastEditTime: 2021-10-25 08:58:10
  */
 import { successFunc, failFunc } from '../types/hardware';
 import { asyncToAndroid } from '../core';

@@ -1,7 +1,7 @@
 /*
  * @Author: kingford
  * @Date: 2021-10-22 09:48:04
- * @LastEditTime: 2021-10-23 15:10:29
+ * @LastEditTime: 2021-10-26 14:48:24
  */
 import Vue from 'vue';
 import VueRouter, { RouteConfig } from 'vue-router';
@@ -23,6 +23,11 @@ const routes: Array<RouteConfig> = [
     path: '/android',
     name: 'Android',
     component: () => import('../views/android/index.vue'),
+  },
+  {
+    path: '/lock',
+    name: 'Lock',
+    component: () => import('../views/android/lock.vue'),
   },
 ];
 

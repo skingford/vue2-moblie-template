@@ -1,34 +1,39 @@
 /*
  * @Author: kingford
  * @Date: 2021-10-20 09:04:15
- * @LastEditTime: 2021-10-23 11:26:32
+ * @LastEditTime: 2021-10-26 15:23:06
  */
-import { LockerStatus } from '../types/hardware';
+import { asyncToAndroid } from '../core';
 
 class Locker {
   constructor() {}
 
-  /**
-   * @description: 获取锁状态
-   * @param {string} section
-   * @param {string} port
-   * @return {*}  {LockerStatus}
-   * @memberof hardware
-   */
-  getLockStatus(section: string, port: string): LockerStatus {
-    return android.getLockStatus(section, port);
+  getStatus(section: string, port: string) {
+    return new Promise((resolve, reject) => {
+      asyncToAndroid({ method: 'getLockStatus', args: [section, port] }, resolve, reject);
+    });
   }
 
-  /**
-   * @description: 开关锁
-   * @param {string} section
-   * @param {string} port
-   * @param {boolean} status
-   * @return {*}  {LockerStatus}
-   * @memberof hardware
-   */
-  setLock(section: string, port: string, status: boolean): LockerStatus {
-    return android.setLock(section, port, status);
+  getAllStatus() {
+    return new Promise((resolve, reject) => {
+      asyncToAndroid({ method: 'getAllLockStatus', args: [] }, resolve, reject);
+    });
+  }
+
+  open(section: number, port: number) {
+    return this.setLock(section, port, true);
+  }
+
+  openAll(section: number) {
+    return new Promise((resolve, reject) => {
+      asyncToAndroid({ method: 'setAllLockStatus', args: [section, true] }, resolve, reject);
+    });
+  }
+
+  private setLock(section: number, port: number, status: boolean) {
+    return new Promise((resolve, reject) => {
+      asyncToAndroid({ method: 'setLockStatus', args: [section, port, status] }, resolve, reject);
+    });
   }
 }
 
@@ -36,4 +41,4 @@ function createLocker() {
   return new Locker();
 }
 
-export const defLocker = createLocker();
+export const locker = createLocker();
