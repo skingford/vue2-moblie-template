@@ -1,7 +1,7 @@
 <!--
  * @Author: kingford
  * @Date: 2021-10-22 09:48:04
- * @LastEditTime: 2021-10-26 20:16:58
+ * @LastEditTime: 2021-10-26 20:29:12
 -->
 <template>
   <div class="lock">
@@ -10,13 +10,18 @@
       <van-cell icon="setting-o" title="读取分页文件" @click="testReadPage" />
       <van-cell icon="setting-o" title="写入文件" @click="testWrite" />
     </van-cell-group>
+    <van-cell-group inset>
+      <van-cell icon="setting-o" title="发送mqtt" @click="testMQTTSend" />
+      <van-cell icon="setting-o" title="发送mqtt" @click="testMQTTSend" />
+    </van-cell-group>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { file } from '@/utils/android/file';
-import { toast } from '@/utils/android/tools';
+import { mqtt } from '@/utils/android/mqtt';
+import { toast } from '@/utils/android/common';
 import { Toast } from 'vant';
 
 @Component({
@@ -56,6 +61,18 @@ export default class Home extends Vue {
       })
       .catch((err) => {
         console.log('testQuery.err：', err);
+      });
+  }
+
+  testMQTTSend() {
+    toast('测试发mqtt消息');
+    mqtt
+      .send('dsdsds')
+      .then((res) => {
+        console.log('mqtt.res：', res);
+      })
+      .catch((err) => {
+        console.log('mqtt.err：', err);
       });
   }
 }

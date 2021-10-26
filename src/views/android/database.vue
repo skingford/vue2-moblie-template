@@ -17,7 +17,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { dbConfig, crud, table } from '@/utils/android/database';
-import { toast } from '@/utils/android/tools';
+import { toast } from '@/utils/android/common';
 import { Toast } from 'vant';
 
 @Component({
