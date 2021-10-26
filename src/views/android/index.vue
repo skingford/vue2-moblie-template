@@ -1,7 +1,7 @@
 <!--
  * @Author: kingford
  * @Date: 2021-10-22 09:48:04
- * @LastEditTime: 2021-10-26 15:06:52
+ * @LastEditTime: 2021-10-26 15:38:39
 -->
 <template>
   <div class="home">
@@ -26,7 +26,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
-import { hardwareInfo, cmd, locker } from '@/utils/android/hardware';
+import { info, cmd, locker } from '@/utils/android/hardware';
 import { toast } from '@/utils/android/tools';
 import { Toast } from 'vant';
 
@@ -37,7 +37,7 @@ import { Toast } from 'vant';
 })
 export default class Home extends Vue {
   state = {
-    ...hardwareInfo.info,
+    ...info.info,
   };
 
   created() {

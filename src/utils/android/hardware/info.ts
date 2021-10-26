@@ -1,7 +1,7 @@
 /*
  * @Author: kingford
  * @Date: 2021-10-20 09:04:15
- * @LastEditTime: 2021-10-23 15:45:05
+ * @LastEditTime: 2021-10-26 15:38:26
  */
 import { isAndroidDevice } from '../index';
 
@@ -59,4 +59,4 @@ function createInfo() {
   return new Information();
 }
 
-export const hardwareInfo = createInfo();
+export const info = createInfo();
