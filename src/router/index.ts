@@ -1,7 +1,7 @@
 /*
  * @Author: kingford
  * @Date: 2021-10-22 09:48:04
- * @LastEditTime: 2021-10-26 14:48:24
+ * @LastEditTime: 2021-10-26 15:46:39
  */
 import Vue from 'vue';
 import VueRouter, { RouteConfig } from 'vue-router';
@@ -28,6 +28,11 @@ const routes: Array<RouteConfig> = [
     path: '/lock',
     name: 'Lock',
     component: () => import('../views/android/lock.vue'),
+  },
+  {
+    path: '/database',
+    name: 'Database',
+    component: () => import('../views/android/database.vue'),
   },
 ];
 

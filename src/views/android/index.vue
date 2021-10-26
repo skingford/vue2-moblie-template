@@ -1,7 +1,7 @@
 <!--
  * @Author: kingford
  * @Date: 2021-10-22 09:48:04
- * @LastEditTime: 2021-10-26 15:38:39
+ * @LastEditTime: 2021-10-26 15:46:48
 -->
 <template>
   <div class="home">
@@ -19,6 +19,7 @@
 
     <van-cell-group inset>
       <van-cell icon="setting-o" title="锁操作" is-link to="/lock" />
+      <van-cell icon="setting-o" title="数据库操作" is-link to="/database" />
     </van-cell-group>
   </div>
 </template>

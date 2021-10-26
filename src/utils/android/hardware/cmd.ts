@@ -1,9 +1,9 @@
 /*
  * @Author: kingford
  * @Date: 2021-10-20 09:56:15
- * @LastEditTime: 2021-10-25 08:58:10
+ * @LastEditTime: 2021-10-26 16:05:01
  */
-import { successFunc, failFunc } from '../types/hardware';
+
 import { asyncToAndroid } from '../core';
 
 class Command {
@@ -13,10 +13,6 @@ class Command {
     return new Promise((resolve, reject) => {
       asyncToAndroid({ method: 'sendSerialCmd', args: [cmd] }, resolve, reject);
     });
-  }
-
-  run(cmd: string, success: successFunc, fial: failFunc) {
-    return android.sendSerialCmd(cmd, [success, fial]);
   }
 }
 

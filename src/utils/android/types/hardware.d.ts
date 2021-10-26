@@ -1,7 +1,7 @@
 /*
  * @Author: kingford
  * @Date: 2021-10-20 09:13:05
- * @LastEditTime: 2021-10-20 09:33:03
+ * @LastEditTime: 2021-10-26 15:55:47
  */
 export enum LockerStatus {
   LOCK = 0,
@@ -16,6 +16,3 @@ export enum LockerStatusText {
   TIMEOUT = '串口通讯超时',
   OTHER = '其它异常',
 }
-
-export type successFunc = (byts: string) => void;
-export type failFunc = (code: string) => void;
