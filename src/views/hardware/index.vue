@@ -1,11 +1,11 @@
 <!--
  * @Author: kingford
  * @Date: 2021-10-22 09:48:04
- * @LastEditTime: 2021-10-27 15:30:59
+ * @LastEditTime: 2021-10-27 15:39:01
 -->
 <template>
   <div class="hw">
-    <van-cell-group class="group-item">
+    <van-cell-group class="group-item mb-2">
       <van-cell icon="bill-o" title="webApp版本号" :value="state.webAppVersion" @click="getInfo" />
       <van-cell icon="manager-o" title="appId" :value="state.appId" />
       <van-cell icon="balance-o" title="mac地址" :value="state.mac" />

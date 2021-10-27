@@ -1,9 +1,11 @@
 /*
  * @Author: kingford
  * @Date: 2021-10-22 09:48:04
- * @LastEditTime: 2021-10-27 14:13:55
+ * @LastEditTime: 2021-10-27 15:37:29
  */
+import 'tailwindcss/tailwind.css';
 import './styles/index.scss';
+
 import Vue from 'vue';
 import App from './App.vue';
 import './registerServiceWorker';
