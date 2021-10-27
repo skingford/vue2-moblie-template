@@ -1,7 +1,7 @@
 /*
  * @Author: kingford
  * @Date: 2021-10-27 15:04:57
- * @LastEditTime: 2021-10-27 15:49:42
+ * @LastEditTime: 2021-10-27 16:24:43
  */
 import { RouteConfig } from 'vue-router';
 import { LAYOUT } from '@/router/constant';
@@ -11,7 +11,7 @@ const hardware: RouteConfig = {
   name: 'Hardware',
   component: LAYOUT,
   meta: {
-    title: '菜单',
+    title: '硬件列表',
     icon: 'wap-home-o',
   },
   children: [
@@ -20,7 +20,7 @@ const hardware: RouteConfig = {
       name: 'HardwareHome',
       component: () => import('@/views/hardware/index.vue'),
       meta: {
-        title: '菜单',
+        title: '硬件列表',
       },
     },
     {
@@ -28,7 +28,7 @@ const hardware: RouteConfig = {
       name: 'HardwareCmd',
       component: () => import('@/views/hardware/cmd/index.vue'),
       meta: {
-        title: '菜单',
+        title: '串口命令',
       },
     },
   ],
