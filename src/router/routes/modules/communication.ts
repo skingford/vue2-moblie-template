@@ -1,14 +1,14 @@
 /*
  * @Author: kingford
- * @Date: 2021-10-27 15:04:57
- * @LastEditTime: 2021-10-27 15:10:59
+ * @Date: 2021-10-27 15:11:25
+ * @LastEditTime: 2021-10-27 15:14:31
  */
 import { RouteConfig } from 'vue-router';
 import { LAYOUT } from '@/router/constant';
 
-const hardware: RouteConfig = {
-  path: '/hardware',
-  name: 'Hardware',
+const communication: RouteConfig = {
+  path: '/communication',
+  name: 'Communication',
   component: LAYOUT,
   meta: {
     title: '菜单',
@@ -17,8 +17,8 @@ const hardware: RouteConfig = {
   children: [
     {
       path: '',
-      name: 'HardwareHome',
-      component: () => import('@/views/hardware/index.vue'),
+      name: 'CommunicationHome',
+      component: () => import('@/views/communication/index.vue'),
       meta: {
         title: '菜单',
       },
@@ -26,4 +26,4 @@ const hardware: RouteConfig = {
   ],
 };
 
-export default hardware;
+export default communication;
