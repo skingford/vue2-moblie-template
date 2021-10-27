@@ -1,7 +1,7 @@
 <!--
  * @Author: kingford
  * @Date: 2021-10-27 14:03:44
- * @LastEditTime: 2021-10-27 14:42:36
+ * @LastEditTime: 2021-10-27 17:40:03
 -->
 <template>
   <van-grid>
@@ -38,7 +38,13 @@ export default class TabbarHome extends Vue {
       icon: 'font-o',
       text: '数据存储',
       iconColor: '#2d8cf0',
-      path: '/data-store',
+      path: '/database',
+    },
+    {
+      icon: 'font-o',
+      text: '文件操作',
+      iconColor: '#2d8cf0',
+      path: '/file',
     },
     {
       icon: 'other-pay',
