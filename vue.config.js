@@ -38,6 +38,19 @@ module.exports = {
         $src: "${process.env.VUE_APP_OSS_SRC}";
         `,
       },
+      // vant 样式修改 https://vant-contrib.gitee.io/vant/#/zh-CN/theme
+      less: {
+        lessOptions: {
+          modifyVars: {
+            // 直接覆盖变量
+            // 'text-color': '#111',
+            // 'border-color': '#eee',
+            // 'nav-bar-height:': '50px',
+            // 或者可以通过 less 文件覆盖（文件路径为绝对路径）
+            hack: `true;@import "${path.resolve(__dirname, './src/styles/cover_vant.less')}";`,
+          },
+        },
+      },
     },
   },
 

@@ -1,7 +1,7 @@
 /*
  * @Author: kingford
  * @Date: 2021-10-27 10:13:43
- * @LastEditTime: 2021-10-27 11:57:24
+ * @LastEditTime: 2021-10-27 14:09:44
  */
 import { RouteConfig } from 'vue-router';
 import { TabbarLAYOUT as LAYOUT } from '@/router/constant';
@@ -19,7 +19,7 @@ const tabbar: RouteConfig = {
     {
       path: 'home',
       name: 'TabbarHome',
-      component: () => import('@/views/android/index.vue'),
+      component: () => import('@/views/tabbar/index.vue'),
       meta: {
         title: '菜单',
       },

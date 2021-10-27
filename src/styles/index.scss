@@ -1,0 +1,17 @@
+html {
+  height: 100%;
+
+  body {
+    height: 100%;
+    font-family: 'PingFangSC';
+    font-size: initial; //重置页面字体大小
+    min-width: 320px;
+    // 弹性滚动
+    -webkit-overflow-scrolling: touch;
+
+    #app,
+    .van-config-provider {
+      height: 100%;
+    }
+  }
+}

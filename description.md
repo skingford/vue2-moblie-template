@@ -1,7 +1,7 @@
 <!--
  * @Author: kingford
  * @Date: 2021-10-23 11:30:38
- * @LastEditTime: 2021-10-23 11:32:00
+ * @LastEditTime: 2021-10-27 14:57:06
 -->
 
 # 技术文档
@@ -26,4 +26,10 @@ npm run lint --fix
 
 ```bash
  npm i postcss-pxtorem@5.1.1 --save-dev
+```
+
+- less-loader@7.x
+
+```bash
+npm i less-loader@7.x --save-dev
 ```
