@@ -1,7 +1,7 @@
 /*
  * @Author: kingford
  * @Date: 2021-10-27 10:13:43
- * @LastEditTime: 2021-10-27 11:23:19
+ * @LastEditTime: 2021-10-27 11:36:52
  */
 import { RouteConfig } from 'vue-router';
 import { LAYOUT } from '@/router/constant';
