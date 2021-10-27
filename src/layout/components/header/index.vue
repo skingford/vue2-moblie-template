@@ -1,0 +1,38 @@
+<!--
+ * @Author: kingford
+ * @Date: 2021-10-27 10:00:04
+ * @LastEditTime: 2021-10-27 10:10:46
+-->
+<template>
+  <van-nav-bar
+    safe-area-inset-top
+    fixed
+    :title="currentTitle"
+    :left-text="leftText"
+    :right-text="rightText"
+    :left-arrow="leftArrow"
+    :border="border"
+    @click-left="onClickLeft"
+    @click-right="onClickRight"
+  />
+</template>
+
+<script lang="ts">
+import { Vue, Prop } from 'vue-property-decorator';
+
+export default class AppHeader extends Vue {
+  @Prop({ default: '首页' }) private title!: string;
+  @Prop({ default: '' }) private leftText!: string;
+  @Prop({ default: '' }) private rightText!: string;
+  @Prop({ default: true }) private leftArrow!: boolean;
+  @Prop({ default: true }) private border!: boolean;
+
+  get currentTitle() {
+    return this.title;
+  }
+
+  onClickLeft() {}
+
+  onClickRight() {}
+}
+</script>

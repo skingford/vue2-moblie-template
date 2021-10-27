@@ -1,25 +1,25 @@
-const IS_PROD = ["production", "prod"].includes(process.env.NODE_ENV);
-const path = require("path");
-const HotHashWebpackPlugin = require("hot-hash-webpack-plugin");
-const WebpackBar = require("webpackbar");
-const resolve = (dir) => path.join(__dirname, ".", dir);
+const IS_PROD = ['production', 'prod'].includes(process.env.NODE_ENV);
+const path = require('path');
+const HotHashWebpackPlugin = require('hot-hash-webpack-plugin');
+const WebpackBar = require('webpackbar');
+const resolve = (dir) => path.join(__dirname, '.', dir);
 
 // https://juejin.cn/post/6886698055685373965#heading-1
 // https://github.com/staven630/vue-cli4-config
 
 module.exports = {
   // 默认'/'，部署应用包时的基本 URL
-  publicPath: IS_PROD ? process.env.VUE_APP_PUBLIC_PATH : "./",
+  publicPath: IS_PROD ? process.env.VUE_APP_PUBLIC_PATH : '/',
   // outputDir: process.env.outputDir || 'dist', // 'dist', 生产环境构建文件的目录
   // assetsDir: "assets", // 相对于outputDir的静态资源(js、css、img、fonts)目录
   lintOnSave: false,
   runtimeCompiler: true, // 是否使用包含运行时编译器的 Vue 构建版本
   productionSourceMap: !IS_PROD, // 生产环境的 source map
-  parallel: require("os").cpus().length > 1,
+  parallel: require('os').cpus().length > 1,
 
   devServer: {
     port: 9999,
-    host: "0.0.0.0",
+    host: '0.0.0.0',
     https: false,
     open: true,
   },
@@ -46,14 +46,14 @@ module.exports = {
     config.resolve.symlinks(true);
 
     // 添加别名
-    config.resolve.alias.set("@", resolve("src")).set("#", resolve("types"));
+    config.resolve.alias.set('@', resolve('src')).set('#', resolve('types'));
 
     if (IS_PROD) {
       // 压缩图片
       config.module
-        .rule("images")
-        .use("image-webpack-loader")
-        .loader("image-webpack-loader")
+        .rule('images')
+        .use('image-webpack-loader')
+        .loader('image-webpack-loader')
         .options({
           mozjpeg: { progressive: true, quality: 65 },
           optipng: { enabled: false },
@@ -64,49 +64,47 @@ module.exports = {
     }
 
     config.module
-      .rule("images")
-      .use("url-loader")
+      .rule('images')
+      .use('url-loader')
       .tap(() => ({
-        name: "./assets/images/[name].[ext]",
+        name: './assets/images/[name].[ext]',
         quality: 85,
         limit: 0,
         esModule: false,
       }));
 
     config.module
-      .rule("svg")
+      .rule('svg')
       .test(/\.svg$/)
-      .include.add(resolve("src/svg"))
+      .include.add(resolve('src/svg'))
       .end()
-      .use("svg-sprite-loader")
-      .loader("svg-sprite-loader");
+      .use('svg-sprite-loader')
+      .loader('svg-sprite-loader');
 
-    config.plugin("define").tap((args) => [
+    config.plugin('define').tap((args) => [
       {
         ...args,
-        "window.isDefine": JSON.stringify(true),
+        'window.isDefine': JSON.stringify(true),
       },
     ]);
 
     // 生产环境配置
-    if (process.env.NODE_ENV === "production") {
-      config.output.filename("./js/[name].[chunkhash:8].js");
-      config.output.chunkFilename("./js/[name].[chunkhash:8].js");
+    if (process.env.NODE_ENV === 'production') {
+      config.output.filename('./js/[name].[chunkhash:8].js');
+      config.output.chunkFilename('./js/[name].[chunkhash:8].js');
 
-      config.plugin("extract-css").tap(() => [
+      config.plugin('extract-css').tap(() => [
         {
-          filename: "css/[name].[contenthash:8].css",
-          chunkFilename: "css/[name].[contenthash:8].css",
+          filename: 'css/[name].[contenthash:8].css',
+          chunkFilename: 'css/[name].[contenthash:8].css',
         },
       ]);
-      config
-        .plugin("hotHash")
-        .use(HotHashWebpackPlugin, [{ version: "1.0.0" }]);
-      config.plugin("webpackBar").use(WebpackBar);
+      config.plugin('hotHash').use(HotHashWebpackPlugin, [{ version: '1.0.0' }]);
+      config.plugin('webpackBar').use(WebpackBar);
 
       config.optimization
         .minimize(true)
-        .minimizer("terser")
+        .minimizer('terser')
         .tap((args) => {
           let { terserOptions } = args[0];
           terserOptions.compress.drop_console = true;
@@ -117,15 +115,15 @@ module.exports = {
       config.optimization.splitChunks({
         cacheGroups: {
           common: {
-            name: "common",
-            chunks: "all",
+            name: 'common',
+            chunks: 'all',
             minSize: 1,
             minChunks: 2,
             priority: 1,
           },
           vendor: {
-            name: "chunk-libs",
-            chunks: "all",
+            name: 'chunk-libs',
+            chunks: 'all',
             test: /[\\/]node_modules[\\/]/,
             priority: 10,
           },
