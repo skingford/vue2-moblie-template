@@ -1,10 +1,10 @@
 /*
  * @Author: kingford
  * @Date: 2021-10-27 10:13:43
- * @LastEditTime: 2021-10-27 11:36:52
+ * @LastEditTime: 2021-10-27 11:57:24
  */
 import { RouteConfig } from 'vue-router';
-import { LAYOUT } from '@/router/constant';
+import { TabbarLAYOUT as LAYOUT } from '@/router/constant';
 
 const tabbar: RouteConfig = {
   path: '/tabbar',

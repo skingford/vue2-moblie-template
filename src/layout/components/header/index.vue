@@ -1,7 +1,7 @@
 <!--
  * @Author: kingford
  * @Date: 2021-10-27 10:00:04
- * @LastEditTime: 2021-10-27 10:10:46
+ * @LastEditTime: 2021-10-27 11:58:00
 -->
 <template>
   <van-nav-bar
@@ -18,8 +18,9 @@
 </template>
 
 <script lang="ts">
-import { Vue, Prop } from 'vue-property-decorator';
+import { Component, Vue, Prop } from 'vue-property-decorator';
 
+@Component({ name: 'AppHeader' })
 export default class AppHeader extends Vue {
   @Prop({ default: '首页' }) private title!: string;
   @Prop({ default: '' }) private leftText!: string;
@@ -31,7 +32,9 @@ export default class AppHeader extends Vue {
     return this.title;
   }
 
-  onClickLeft() {}
+  onClickLeft() {
+    this.$router.back();
+  }
 
   onClickRight() {}
 }
