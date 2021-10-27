@@ -1,7 +1,7 @@
 <!--
  * @Author: kingford
  * @Date: 2021-10-27 10:00:04
- * @LastEditTime: 2021-10-27 11:58:00
+ * @LastEditTime: 2021-10-27 16:49:08
 -->
 <template>
   <van-nav-bar
@@ -29,8 +29,10 @@ export default class AppHeader extends Vue {
   @Prop({ default: true }) private border!: boolean;
 
   get currentTitle() {
-    return this.title;
+    return this.$route.meta?.title;
   }
+
+  created() {}
 
   onClickLeft() {
     this.$router.back();
