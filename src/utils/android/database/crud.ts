@@ -1,7 +1,7 @@
 /*
  * @Author: kingford
  * @Date: 2021-10-26 15:48:14
- * @LastEditTime: 2021-10-28 20:21:29
+ * @LastEditTime: 2021-10-28 20:50:12
  */
 import { DynamicField } from '../types/common';
 
@@ -43,6 +43,7 @@ class Crud {
   }
 
   select(query: DynamicField): Promise<ResponseResult> {
+    console.log('debugger');
     return new Promise((resolve, reject) => {
       android.queryData(query, resolve, reject);
     });
