@@ -1,45 +1,50 @@
 /*
  * @Author: kingford
  * @Date: 2021-10-26 15:48:14
- * @LastEditTime: 2021-10-26 16:27:38
+ * @LastEditTime: 2021-10-28 11:09:17
  */
-
-import { asyncToAndroid } from '../core';
-import { parseDesc } from './tool';
 import { DynamicField } from '../types/common';
 
 class Crud {
-  insert(table: string, data: DynamicField) {
+  createTable(tableName: string, struct: DynamicField, unique: string[]) {
     return new Promise((resolve, reject) => {
-      asyncToAndroid(
-        {
-          method: 'insertData',
-          args: [table, JSON.stringify(data)],
-        },
-        resolve,
-        reject
-      );
+      android.initNormalTable(tableName, struct, unique, resolve, reject);
     });
   }
-  remove(table: string, where: string) {}
-  update(table: string, data: any, where: string) {}
-  select(desc: any) {
-    const args = parseDesc(desc);
+
+  createShadowTable(
+    tableName: string,
+    struct: DynamicField,
+    unique: string[],
+    shadowType: string,
+    objectKey: string
+  ): Promise<ResponseResult> {
     return new Promise((resolve, reject) => {
-      asyncToAndroid(
-        {
-          method: 'queryData',
-          args: [
-            args['tableName'],
-            args['fields'],
-            args['selection'],
-            args['selectionArgs'],
-            args['sortOrder'],
-          ],
-        },
-        resolve,
-        reject
-      );
+      android.initNormalTable(tableName, struct, unique, shadowType, objectKey, resolve, reject);
+    });
+  }
+
+  insert(tableName: string, data: DynamicField): Promise<ResponseResult> {
+    return new Promise((resolve, reject) => {
+      android.insertData(tableName, data, resolve, reject);
+    });
+  }
+
+  remove(query: any): Promise<ResponseResult> {
+    return new Promise((resolve, reject) => {
+      android.delData(query, resolve, reject);
+    });
+  }
+
+  update(query, data: DynamicField): Promise<ResponseResult> {
+    return new Promise((resolve, reject) => {
+      android.updateData(query, data, resolve, reject);
+    });
+  }
+
+  select(query): Promise<ResponseResult> {
+    return new Promise((resolve, reject) => {
+      android.queryData(query, resolve, reject);
     });
   }
 }
