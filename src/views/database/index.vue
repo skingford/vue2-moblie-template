@@ -1,18 +1,18 @@
 <!--
  * @Author: kingford
  * @Date: 2021-10-27 17:33:11
- * @LastEditTime: 2021-10-28 10:46:41
+ * @LastEditTime: 2021-10-28 11:35:07
 -->
 <template>
   <van-cell-group>
     <van-cell icon="setting-o" title="建表" @click="testCreate" />
     <van-cell icon="setting-o" title="建影子表" @click="testCreateShadow" />
     <van-cell icon="setting-o" title="插数据" @click="testInsert" />
-    <van-cell icon="setting-o" title="删除一条" @click="testRemove" />
-    <!-- <van-cell icon="setting-o" title="删除所有" @click="testCreate" /> -->
-    <van-cell icon="setting-o" title="更新所有" @click="testUpdate" />
-    <van-cell icon="setting-o" title="检索" @click="testSelect" />
-    <!-- <van-cell icon="setting-o" title="检索一条" @click="testCreate" /> -->
+    <van-cell icon="setting-o" title="删除一条" @click="testRemove(true)" />
+    <van-cell icon="setting-o" title="删除所有" @click="testRemove(false)" />
+    <van-cell icon="setting-o" title="更新所有" @click="testUpdate(false)" />
+    <van-cell icon="setting-o" title="检索" @click="testSelect(false)" />
+    <van-cell icon="setting-o" title="检索一条" @click="testSelect(true)" />
   </van-cell-group>
 </template>
 <script lang="ts">
@@ -79,14 +79,19 @@ export default class Database extends Vue {
       });
   }
 
-  testRemove() {
+  testRemove(isOne = true) {
     this.$toast.loading({
       duration: 0,
       forbidClick: true,
       message: '删除数据...',
     });
+
+    const query = isOne
+      ? android.table('test2').fields('*').where('id', '=', 10).build()
+      : android.table('test2').build();
+
     crud
-      .remove(android.table('test2').fields('*').where('id', '>', 10).build())
+      .remove(query)
       .then((res) => {
         this.$toast.success('删除数据成功');
         console.log(res);
@@ -97,15 +102,19 @@ export default class Database extends Vue {
       });
   }
 
-  testUpdate() {
+  testUpdate(isOne = true) {
     this.$toast.loading({
       duration: 0,
       forbidClick: true,
       message: '更新数据...',
     });
 
+    const query = isOne
+      ? android.table('test2').where('id', 100).build()
+      : android.table('test2').build();
+
     crud
-      .update(android.table('test2').where('id', 100).build(), { name: 'PP>' })
+      .update(query, { name: 'PP>' })
       .then((res) => {
         this.$toast.success('更新数据成功');
         console.log(res);
@@ -116,17 +125,21 @@ export default class Database extends Vue {
       });
   }
 
-  testSelect() {
+  testSelect(isOne: boolean = false) {
     this.$toast.loading({
       duration: 0,
       forbidClick: true,
       message: '检索...',
     });
 
+    const query = isOne
+      ? android.table('test2').fields('*').where('id', 100).build()
+      : android.table('test2').fields('*').build();
+
     crud
-      .select(android.table('test2').fields('*').build())
+      .select(query)
       .then((res) => {
-        this.$toast.success('检索成功');
+        this.$toast.success('检索成功:' + res.result);
         console.log(res);
       })
       .catch((err) => {

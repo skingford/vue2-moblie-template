@@ -1,7 +1,7 @@
 /*
  * @Author: kingford
  * @Date: 2021-10-26 15:48:14
- * @LastEditTime: 2021-10-28 11:09:17
+ * @LastEditTime: 2021-10-28 11:16:29
  */
 import { DynamicField } from '../types/common';
 
@@ -30,19 +30,19 @@ class Crud {
     });
   }
 
-  remove(query: any): Promise<ResponseResult> {
+  remove(query: DynamicField): Promise<ResponseResult> {
     return new Promise((resolve, reject) => {
       android.delData(query, resolve, reject);
     });
   }
 
-  update(query, data: DynamicField): Promise<ResponseResult> {
+  update(query: DynamicField, data: DynamicField): Promise<ResponseResult> {
     return new Promise((resolve, reject) => {
       android.updateData(query, data, resolve, reject);
     });
   }
 
-  select(query): Promise<ResponseResult> {
+  select(query: DynamicField): Promise<ResponseResult> {
     return new Promise((resolve, reject) => {
       android.queryData(query, resolve, reject);
     });
