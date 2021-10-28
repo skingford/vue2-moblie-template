@@ -1,7 +1,7 @@
 <!--
  * @Author: kingford
  * @Date: 2021-10-27 17:32:56
- * @LastEditTime: 2021-10-27 17:48:35
+ * @LastEditTime: 2021-10-28 11:42:40
 -->
 <template>
   <van-cell-group>
@@ -13,6 +13,27 @@
 </template>
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import { file } from '@/utils/android';
+
 @Component({ name: 'File' })
-export default class FileComp extends Vue {}
+export default class FileComp extends Vue {
+  testRead() {
+    this.$toast.loading({
+      duration: 0,
+      forbidClick: true,
+      message: '读文件...',
+    });
+
+    file
+      .read('/sdcard/mt_quality/28:11:21:04:22:1a_u202_2021-10-20-12:35:34:303.log')
+      .then((res) => {
+        this.$toast.success('读文件:' + res.result);
+        console.log(res);
+      })
+      .catch((err) => {
+        this.$toast.success('读文件');
+        console.log(err);
+      });
+  }
+}
 </script>
