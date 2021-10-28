@@ -1,12 +1,12 @@
 /*
  * @Author: kingford
  * @Date: 2021-10-26 15:48:14
- * @LastEditTime: 2021-10-28 11:16:29
+ * @LastEditTime: 2021-10-28 20:21:29
  */
 import { DynamicField } from '../types/common';
 
 class Crud {
-  createTable(tableName: string, struct: DynamicField, unique: string[]) {
+  createTable(tableName: string, struct: DynamicField, unique: string[]): Promise<ResponseResult> {
     return new Promise((resolve, reject) => {
       android.initNormalTable(tableName, struct, unique, resolve, reject);
     });
@@ -24,7 +24,7 @@ class Crud {
     });
   }
 
-  insert(tableName: string, data: DynamicField): Promise<ResponseResult> {
+  insert(tableName: string, data: DynamicField[]): Promise<ResponseResult> {
     return new Promise((resolve, reject) => {
       android.insertData(tableName, data, resolve, reject);
     });

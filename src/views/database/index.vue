@@ -1,7 +1,7 @@
 <!--
  * @Author: kingford
  * @Date: 2021-10-27 17:33:11
- * @LastEditTime: 2021-10-28 11:35:07
+ * @LastEditTime: 2021-10-28 20:20:25
 -->
 <template>
   <van-cell-group>
@@ -45,7 +45,7 @@ export default class Database extends Vue {
       message: '建影子表...',
     });
     crud
-      .createTable('test2', { name: 'string', id: 'int' }, ['id'], 'pad', 'id')
+      .createShadowTable('test2', { name: 'string', id: 'int' }, ['id'], 'pad', 'id')
       .then((res) => {
         this.$toast.success('建影子表成功');
         console.log(res);
